@@ -14,24 +14,24 @@ extension UIFont {
         
         var weightString: String
         switch weight {
-        case .black:
-            weightString = "Black"
+//        case .black:
+//            weightString = "Black"
         case .bold:
             weightString = "Blod"
-        case .heavy:
-            weightString = "ExtraBold"
-        case .ultraLight:
-            weightString = "ExtraLight"
-        case .light:
-            weightString = "Light"
-        case .medium:
-            weightString = "Medium"
+//        case .heavy:
+//            weightString = "ExtraBold"
+//        case .ultraLight:
+//            weightString = "ExtraLight"
+//        case .light:
+//            weightString = "Light"
+//        case .medium:
+//            weightString = "Medium"
         case .regular:
             weightString = "Regular"
-        case .semibold:
-            weightString = "SemiBold"
-        case .thin:
-            weightString = "Thin"
+//        case .semibold:
+//            weightString = "SemiBold"
+//        case .thin:
+//            weightString = "Thin"
         default:
             weightString = "Regular"
         }
