@@ -10,9 +10,9 @@ import UIKit
 final class HeaderView: UICollectionReusableView {
     static let id = "HeaderView"
     
-    private let profileImage = UIImageView()
-    private let nameLabel = UILabel()
-    private let subLabel = UILabel()
+    let profileImage = UIImageView()
+    let nameLabel = UILabel()
+    let subLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,17 +36,17 @@ final class HeaderView: UICollectionReusableView {
             profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             profileImage.topAnchor.constraint(equalTo: self.topAnchor),
             profileImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            profileImage.widthAnchor.constraint(equalToConstant: 60)
+            profileImage.widthAnchor.constraint(equalToConstant: 120)
         ])
 
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            nameLabel.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor, constant: -10),
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8)
         ])
-
+        
         NSLayoutConstraint.activate([
-            subLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            subLabel.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor, constant: 10),
             subLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
             subLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
