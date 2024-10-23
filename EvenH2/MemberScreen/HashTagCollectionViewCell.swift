@@ -1,5 +1,5 @@
 //
-//  MemberDetailCollectionViewCell.swift
+//  HashTagCollectionViewCell.swift
 //  EvenH2
 //
 //  Created by miranda on 10/23/24.
@@ -7,11 +7,16 @@
 
 import UIKit
 
-class MemberDetailCollectionViewCell: UICollectionViewCell {
-
+final class HashTagCollectionViewCell: UICollectionViewCell {
+    static let id = "HashTagCollectionViewCell"
+    
+    @IBOutlet weak var hashtagLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func configure(with hashtag: String) {
+        hashtagLabel.text = hashtag
+    }
 }
