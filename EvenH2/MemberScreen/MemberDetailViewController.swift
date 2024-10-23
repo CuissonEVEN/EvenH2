@@ -27,7 +27,7 @@ fileprivate enum Section {
 fileprivate enum Item: Hashable {
     case hashTag(String)
     case introduction(String)
-    case detail(String)
+    case detail(Int, String)
 }
 
 fileprivate struct MemberHeader: Hashable {
@@ -67,6 +67,8 @@ final class MemberDetailViewController: UIViewController {
         
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
         collectionView.register(IntroduceYourselfCollectionViewCell.self, forCellWithReuseIdentifier: IntroduceYourselfCollectionViewCell.id)
+        
+        collectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.id)
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -78,6 +80,8 @@ final class MemberDetailViewController: UIViewController {
                 
             case 1:
                 return self.createIntroductionSection()
+            case 2:
+                return self.createListSection()
                 
             default:
                 
@@ -117,6 +121,17 @@ final class MemberDetailViewController: UIViewController {
         return section
     }
     
+    func createListSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.4))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let gruopSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(320))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: gruopSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             switch itemIdentifier {
@@ -133,6 +148,18 @@ final class MemberDetailViewController: UIViewController {
                     fatalError("Unable to dequeue IntroduceYourselfCollectionViewCell")
                 }
                 cell.configure(content: introduction)
+                return cell
+                
+            case .detail(let memberId, let title):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.id, for: indexPath) as? ListCollectionViewCell else {
+                    fatalError("Unable to dequeue ListCollectionViewCell")
+                }
+                
+                // Find the member using the memberId
+                if let member = self.members.first(where: { $0.id == memberId }) {
+                    cell.configure(mbti: member.mbti, strength: member.strength, teamRole: member.teamRole, personalGoal: member.personalGoal)
+                }
+                
                 return cell
                 
             default:
@@ -173,6 +200,8 @@ final class MemberDetailViewController: UIViewController {
 
         snapshot.appendItems([.introduction(member.introduction)], toSection: .introduction)
         
+        snapshot.appendItems([.detail(member.id, "Details")], toSection: .details)
+
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
