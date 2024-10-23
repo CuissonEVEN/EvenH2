@@ -3,7 +3,7 @@
 //  EvenH2
 //
 //  Created by CHYUN on 10/22/24.
-//
+//  minseok
 
 import UIKit
 
