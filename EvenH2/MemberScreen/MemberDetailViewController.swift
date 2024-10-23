@@ -62,9 +62,7 @@ final class MemberDetailViewController: UIViewController {
     
     func setCollectinoView() {
         collectionView.collectionViewLayout = createCompositionalLayout()
-        
-        collectionView.register(UINib(nibName: "HashTagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: HashTagCollectionViewCell.id)
-        
+                
         collectionView.register(VerticalHashtagCollectionViewCell.self, forCellWithReuseIdentifier: VerticalHashtagCollectionViewCell.id)
 
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
@@ -164,10 +162,7 @@ final class MemberDetailViewController: UIViewController {
                 return cell
                 
             default:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HashTagCollectionViewCell.id, for: indexPath) as? HashTagCollectionViewCell else {
-                    fatalError("Unable to dequeue HashTagCollectionViewCell")
-                }
-                return cell
+                return UICollectionViewCell()
             }
         }
         
