@@ -4,7 +4,6 @@
 //
 //  Created by CHYUN on 10/22/24.
 //
-// 박채현
 
 import UIKit
 
