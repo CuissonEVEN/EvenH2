@@ -34,10 +34,11 @@ struct MemberHeader: Hashable {
     let id: String
     let profileImage: String
     let name: String
-    let introduction: String
+    let personalGoal: String
 }
 
 struct IntroduceYourself: Hashable {
+    let id: String
     let mbti: String
     let strength: String
     let teamRole: String
@@ -91,11 +92,11 @@ final class MemberDetailViewController: UIViewController {
                 
             case 1:
                 return self.createIntroductionSection()
+                
             case 2:
                 return self.createListSection()
                 
             default:
-                
                 return self.createHashTagSection()
             }
         }
@@ -103,15 +104,15 @@ final class MemberDetailViewController: UIViewController {
     
     func createHashTagSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.7))
+        //let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(28))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10)
         
-        let gruopSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .absolute(50))
+        let gruopSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(50))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: gruopSize, subitems: [item])
-
-        group.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 10, bottom: 20, trailing: 10)
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
@@ -124,12 +125,12 @@ final class MemberDetailViewController: UIViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: gruopSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 10, bottom: 20, trailing: 10)
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(240))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         
         section.boundarySupplementaryItems = [sectionHeader]
-        
         return section
     }
     
@@ -141,11 +142,13 @@ final class MemberDetailViewController: UIViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: gruopSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 10, bottom: 20, trailing: 10)
         return section
     }
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+            
             switch itemIdentifier {
             case .hashTag(let hashtag):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalHashtagCollectionViewCell.id, for: indexPath) as? VerticalHashtagCollectionViewCell else {
@@ -159,6 +162,7 @@ final class MemberDetailViewController: UIViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IntroduceYourselfCollectionViewCell.id, for: indexPath) as? IntroduceYourselfCollectionViewCell else {
                     fatalError("Unable to dequeue IntroduceYourselfCollectionViewCell")
                 }
+                
                 cell.configure(content: introduction)
                 return cell
                 
@@ -179,31 +183,16 @@ final class MemberDetailViewController: UIViewController {
         }
             
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
-//            guard kind == UICollectionView.elementKindSectionHeader else {
-//                return nil
-//            }
-//            
-//            if self.dataSource?.snapshot().sectionIdentifiers[indexPath.section] == .introduction {
-//                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath) as! HeaderView
-//                
-//                let member = self.members[indexPath.section]
-//                header.nameLabel.text = member.name
-//                header.subLabel.text = member.strength
-//                
-//                return header
-//            }
-//            
-//            return nil
             
             guard kind == UICollectionView.elementKindSectionHeader else {
-                return nil
+                return UICollectionReusableView()
             }
             
             if self.dataSource?.snapshot().sectionIdentifiers[indexPath.section] == .introduction {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath) as! HeaderView
                 
                 let member = self.members[0]
-                let memberHeader = MemberHeader(id: "\(member.id)", profileImage: "profileImageName", name: member.name, introduction: member.introduction)
+                let memberHeader = MemberHeader(id: "\(member.id)", profileImage: "profileImageName", name: member.name, personalGoal: member.personalGoal)
                 header.configure(with: memberHeader)
                 
                 return header
@@ -223,6 +212,17 @@ final class MemberDetailViewController: UIViewController {
         snapshot.appendItems(member.hashTag.map { Item.hashTag($0) }, toSection: .hashTag)
         snapshot.appendItems([.introduction(member.introduction)], toSection: .introduction)
         snapshot.appendItems([.detail(member.id, "Details")], toSection: .details)
+
+        let details = [
+            ("mbti", member.mbti),
+            ("strength", member.strength),
+            ("teamRole", member.teamRole),
+            ("personalGoal", member.personalGoal)
+        ]
+        
+        for (index, detail) in details.enumerated() {
+            snapshot.appendItems([.detail(member.id * 1000 + index, detail.1)], toSection: .details)
+        }
         
         dataSource?.apply(snapshot, animatingDifferences: true)
     }

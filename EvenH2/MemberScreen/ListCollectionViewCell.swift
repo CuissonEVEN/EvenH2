@@ -12,18 +12,6 @@ final class ListCollectionViewCell: UICollectionViewCell {
     
     private let stackView = UIStackView()
     
-    private let mbtiTitleLabel = UILabel()
-    private let mbtiLabel = UILabel()
-    
-    private let strengthTitleLabel = UILabel()
-    private let strengthLabel = UILabel()
-    
-    private let teamRoleTitleLabel = UILabel()
-    private let teamRoleLabel = UILabel()
-    
-    private let personalGoalTitleLabel = UILabel()
-    private let personalGoalLabel = UILabel()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -34,45 +22,44 @@ final class ListCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
-        // Configure stack view
         stackView.axis = .vertical
-        stackView.spacing = 4
+        stackView.spacing = 4 // Space between labels
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Setup labels with titles
-        mbtiTitleLabel.text = "MBTI:"
-        strengthTitleLabel.text = "Strength:"
-        teamRoleTitleLabel.text = "Team Role:"
-        personalGoalTitleLabel.text = "Personal Goal:"
-        
-        // Add labels to the stack view
-        stackView.addArrangedSubview(createHorizontalStack(with: mbtiTitleLabel, mbtiLabel))
-        stackView.addArrangedSubview(createHorizontalStack(with: strengthTitleLabel, strengthLabel))
-        stackView.addArrangedSubview(createHorizontalStack(with: teamRoleTitleLabel, teamRoleLabel))
-        stackView.addArrangedSubview(createHorizontalStack(with: personalGoalTitleLabel, personalGoalLabel))
         
         addSubview(stackView)
         
-        // Set constraints for stack view
+        // Constraints for stackView
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
         ])
     }
     
-    private func createHorizontalStack(with titleLabel: UILabel, _ valueLabel: UILabel) -> UIStackView {
-        let horizontalStack = UIStackView(arrangedSubviews: [titleLabel, valueLabel])
-        horizontalStack.axis = .horizontal
-        horizontalStack.spacing = 8
-        return horizontalStack
+    func configure(mbti: String, strength: String, teamRole: String, personalGoal: String) {
+        // Clear previous labels
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        // Create and configure labels
+        let mbtiLabel = createLabel(title: "MBTI:", value: mbti)
+        let strengthLabel = createLabel(title: "Strength:", value: strength)
+        let teamRoleLabel = createLabel(title: "Team Role:", value: teamRole)
+        let personalGoalLabel = createLabel(title: "Personal Goal:", value: personalGoal)
+        
+        // Add labels to stack view
+        stackView.addArrangedSubview(mbtiLabel)
+        stackView.addArrangedSubview(strengthLabel)
+        stackView.addArrangedSubview(teamRoleLabel)
+        stackView.addArrangedSubview(personalGoalLabel)
     }
     
-    func configure(mbti: String, strength: String, teamRole: String, personalGoal: String) {
-        mbtiLabel.text = mbti
-        strengthLabel.text = strength
-        teamRoleLabel.text = teamRole
-        personalGoalLabel.text = personalGoal
+    private func createLabel(title: String, value: String) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont.dmSans(size: 14, weight: .regular)
+        label.textColor = UIColor.w700
+        label.numberOfLines = 0 // Allow multi-line
+        label.text = "\(title) \(value)"
+        return label
     }
 }

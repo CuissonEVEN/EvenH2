@@ -25,7 +25,7 @@ final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
     
     private func setUpViews() {
         hashtagView.backgroundColor = UIColor(named: "w100")
-        hashtagView.layer.cornerRadius = 12
+        hashtagView.layer.cornerRadius = 20
         hashtagView.layer.borderColor = UIColor(named: "w200")?.cgColor
         hashtagView.layer.borderWidth = 1
         

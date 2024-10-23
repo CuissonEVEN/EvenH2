@@ -46,7 +46,7 @@ final class HeaderView: UICollectionReusableView {
         ])
         
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor), // HeaderView의 centerY에 정렬
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
@@ -62,6 +62,6 @@ final class HeaderView: UICollectionReusableView {
         
         subLabel.font = UIFont.dmSans(size: 16, weight: .regular)
         subLabel.textColor = UIColor.w300
-        subLabel.text = header.introduction
+        subLabel.text = header.personalGoal
     }
 }
