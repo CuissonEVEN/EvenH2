@@ -24,13 +24,13 @@ final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViews() {
-        hashtagView.backgroundColor = .white
+        hashtagView.backgroundColor = UIColor(named: "w100")
         hashtagView.layer.cornerRadius = 12
-        hashtagView.layer.borderColor = UIColor.lightGray.cgColor
+        hashtagView.layer.borderColor = UIColor(named: "w200")?.cgColor
         hashtagView.layer.borderWidth = 1
         
-        hashtagLabel.textColor = UIColor.darkGray
-        hashtagLabel.font = UIFont.dmSans(size: 15, weight: .black)
+        hashtagLabel.textColor = UIColor(named: "w600")
+        hashtagLabel.font = UIFont.dmSans(size: 16, weight: .regular)
         
         contentView.addSubview(hashtagView)
         hashtagView.addSubview(hashtagLabel)
@@ -45,9 +45,11 @@ final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
             hashtagView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             hashtagView.topAnchor.constraint(equalTo: contentView.topAnchor),
             hashtagView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            hashtagView.widthAnchor.constraint(equalToConstant: 120),
             
-            hashtagLabel.centerXAnchor.constraint(equalTo: hashtagView.centerXAnchor),
-            hashtagLabel.centerYAnchor.constraint(equalTo: hashtagView.centerYAnchor)
+            hashtagLabel.centerYAnchor.constraint(equalTo: hashtagView.centerYAnchor),
+            hashtagLabel.centerXAnchor.constraint(equalTo: hashtagView.centerXAnchor)
+
         ])
     }
     
