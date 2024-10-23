@@ -65,6 +65,8 @@ final class MemberDetailViewController: UIViewController {
         
         collectionView.register(UINib(nibName: "HashTagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: HashTagCollectionViewCell.id)
         
+        collectionView.register(VerticalHashtagCollectionViewCell.self, forCellWithReuseIdentifier: VerticalHashtagCollectionViewCell.id)
+
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
         collectionView.register(IntroduceYourselfCollectionViewCell.self, forCellWithReuseIdentifier: IntroduceYourselfCollectionViewCell.id)
         
@@ -93,7 +95,7 @@ final class MemberDetailViewController: UIViewController {
     func createHashTagSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(0.7))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        //item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10)
         
         let gruopSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .absolute(50))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: gruopSize, subitems: [item])
@@ -136,7 +138,7 @@ final class MemberDetailViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             switch itemIdentifier {
             case .hashTag(let hashtag):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HashTagCollectionViewCell.id, for: indexPath) as? HashTagCollectionViewCell else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalHashtagCollectionViewCell.id, for: indexPath) as? VerticalHashtagCollectionViewCell else {
                     fatalError("Unable to dequeue HashTagCollectionViewCell")
                 }
                 
@@ -155,7 +157,6 @@ final class MemberDetailViewController: UIViewController {
                     fatalError("Unable to dequeue ListCollectionViewCell")
                 }
                 
-                // Find the member using the memberId
                 if let member = self.members.first(where: { $0.id == memberId }) {
                     cell.configure(mbti: member.mbti, strength: member.strength, teamRole: member.teamRole, personalGoal: member.personalGoal)
                 }
