@@ -37,6 +37,13 @@ struct MemberHeader: Hashable {
     let introduction: String
 }
 
+struct IntroduceYourself: Hashable {
+    let mbti: String
+    let strength: String
+    let teamRole: String
+    let personalGoal: String
+}
+
 final class MemberDetailViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -55,7 +62,7 @@ final class MemberDetailViewController: UIViewController {
     
     func fetchData() {
         members = [
-            Member(id: 1, name: "안성재", hashTag: ["Swift", "iOS", "Xcode", "RxSwift", "1Swift", "2iOS", "3Xcode", "4RxSwift"], introduction: "어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅", mbti: "ISFJ", strength: "Leadership", teamRole: "PM", personalGoal: "전서구"),
+            Member(id: 1, name: "안성재", hashTag: ["#Swift", "#iOS", "#Xcode", "#RxSwift", "#1Swift", "#2iOS", "#3Xcode", "#4RxSwift"], introduction: "어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅", mbti: "ISFJ", strength: "Leadership", teamRole: "PM", personalGoal: "전서구"),
             Member(id: 2, name: "안성재", hashTag: ["Swift", "iOS", "Xcode", "RxSwift", "1Swift", "2iOS", "3Xcode", "4RxSwift"], introduction: "어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅", mbti: "ISFJ", strength: "Leadership", teamRole: "PM", personalGoal: "전서구"),
             Member(id: 3, name: "안성재", hashTag: ["Swift", "iOS", "Xcode", "RxSwift", "1Swift", "2iOS", "3Xcode", "4RxSwift"], introduction: "어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅", mbti: "ISFJ", strength: "Leadership", teamRole: "PM", personalGoal: "전서구"),
             Member(id: 4, name: "안성재", hashTag: ["Swift", "iOS", "Xcode", "RxSwift", "1Swift", "2iOS", "3Xcode", "4RxSwift"], introduction: "어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅어떠어떠한 장점과 어떠어떠한 협업스타일을 바탕으로 팀에 어떠어떠하게 기여하고 있다. 어떠어떠한 목표를 위해 어떠어떠한 노력을 하고 있다. 아자아자 화이팅", mbti: "ISFJ", strength: "Leadership", teamRole: "PM", personalGoal: "전서구"),

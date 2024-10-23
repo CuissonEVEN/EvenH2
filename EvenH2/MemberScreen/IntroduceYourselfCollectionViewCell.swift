@@ -23,7 +23,7 @@ class IntroduceYourselfCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentLabel.numberOfLines = 2
+        contentLabel.numberOfLines = 0
         contentLabel.lineBreakMode = .byTruncatingTail
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -38,6 +38,8 @@ class IntroduceYourselfCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(content: String) {
+        contentLabel.font = UIFont.dmSans(size: 14, weight: .regular)
+        contentLabel.textColor = UIColor.w300
         contentLabel.text = content
     }
 }
