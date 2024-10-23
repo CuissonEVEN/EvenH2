@@ -1,7 +1,7 @@
 //
 //  PromiseViewController.swift
 //  EvenH2
-//
+//  나영진
 //  Created by CHYUN on 10/22/24.
 //
 
