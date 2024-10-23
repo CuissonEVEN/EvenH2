@@ -10,21 +10,14 @@ import UIKit
 
 class MemberViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let memberNames = [
-        "Park, Chae-Hyun",
-        "Park, Si-Yeon",
-        "Hwang, Doyle",
-        "Park, Min-Seok",
-        "Na, Young-Jin",
-        "Jang, Sang-Kyeong"]
     
-    let tmi = [
-        "동생이 지난 달에 전역함",
-        "집 앞 떡볶이 JMT",
-        "커피보다는 마테차",
-        "아직 여름이불 덮는 중~",
-        "창문이 너무 커서 뜨거움",
-        "애플워치 시리즈10 구매😈"
+    let members: [(String,String)] = [
+        ("Chae-Hyun Park", "동생이 지난 달에 전역함 👽"),
+        ("Si-Yeon Park", "집 앞 떡볶이 JMT 💕"),
+        ("Doyle Hwang", "커피보다는 마테차 🍵"),
+        ("Min-Seok Park", "아직 여름이불 덮는 중~ 💦"),
+        ("Young-Jin Na", "창문이 너무 커서 뜨거움 🌈"),
+        ("Sang-Kyeong Jang", "애플워치 시리즈10 구매 😈")
     ]
     
     var collectionView: UICollectionView!
@@ -49,14 +42,16 @@ class MemberViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memberNames.count
+        return members.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-        cell.memberImageView.image = UIImage(named: memberNames[indexPath.row])
-        cell.memberNameLabel.text = memberNames[indexPath.row]
-        cell.memberTmiLabel.text = tmi[indexPath.row]
+        let name = members[indexPath.row].0
+        let tmi = members[indexPath.row].1
+        cell.memberImageView.image = UIImage(named: name)
+        cell.memberNameLabel.text = name
+        cell.memberTmiLabel.text = tmi
         return cell
     }
     
