@@ -30,17 +30,21 @@ fileprivate enum Item: Hashable {
     case detail(Int, String)
 }
 
-fileprivate struct MemberHeader: Hashable {
+struct MemberHeader: Hashable {
     let id: String
+    let profileImage: String
     let name: String
-    let age: Int
     let introduction: String
 }
 
 final class MemberDetailViewController: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     var members: [Member] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectinoView()
@@ -114,7 +118,7 @@ final class MemberDetailViewController: UIViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(200))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(240))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         
         section.boundarySupplementaryItems = [sectionHeader]
@@ -166,8 +170,24 @@ final class MemberDetailViewController: UIViewController {
                 return UICollectionViewCell()
             }
         }
-        
+            
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+//            guard kind == UICollectionView.elementKindSectionHeader else {
+//                return nil
+//            }
+//            
+//            if self.dataSource?.snapshot().sectionIdentifiers[indexPath.section] == .introduction {
+//                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath) as! HeaderView
+//                
+//                let member = self.members[indexPath.section]
+//                header.nameLabel.text = member.name
+//                header.subLabel.text = member.strength
+//                
+//                return header
+//            }
+//            
+//            return nil
+            
             guard kind == UICollectionView.elementKindSectionHeader else {
                 return nil
             }
@@ -175,9 +195,9 @@ final class MemberDetailViewController: UIViewController {
             if self.dataSource?.snapshot().sectionIdentifiers[indexPath.section] == .introduction {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath) as! HeaderView
                 
-                let member = self.members[indexPath.section]
-                header.nameLabel.text = member.name
-                header.subLabel.text = member.strength
+                let member = self.members[0]
+                let memberHeader = MemberHeader(id: "\(member.id)", profileImage: "profileImageName", name: member.name, introduction: member.introduction)
+                header.configure(with: memberHeader)
                 
                 return header
             }
@@ -193,12 +213,10 @@ final class MemberDetailViewController: UIViewController {
         snapshot.appendSections([.hashTag, .introduction, .details])
         
         let member = members[0]
-        snapshot.appendItems(member.hashTag.map{ Item.hashTag($0)}, toSection: .hashTag)
-
+        snapshot.appendItems(member.hashTag.map { Item.hashTag($0) }, toSection: .hashTag)
         snapshot.appendItems([.introduction(member.introduction)], toSection: .introduction)
-        
         snapshot.appendItems([.detail(member.id, "Details")], toSection: .details)
-
+        
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }

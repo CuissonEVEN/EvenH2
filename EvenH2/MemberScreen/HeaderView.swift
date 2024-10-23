@@ -13,6 +13,7 @@ final class HeaderView: UICollectionReusableView {
     let profileImage = UIImageView()
     let nameLabel = UILabel()
     let subLabel = UILabel()
+    let stackView = UIStackView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,28 +28,40 @@ final class HeaderView: UICollectionReusableView {
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         subLabel.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(subLabel)
         
         addSubview(profileImage)
-        addSubview(nameLabel)
-        addSubview(subLabel)
+        addSubview(stackView)
         
         NSLayoutConstraint.activate([
             profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             profileImage.topAnchor.constraint(equalTo: self.topAnchor),
             profileImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            profileImage.widthAnchor.constraint(equalToConstant: 120)
-        ])
-
-        NSLayoutConstraint.activate([
-            nameLabel.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor, constant: -10),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8)
+            profileImage.widthAnchor.constraint(equalToConstant: 170)
         ])
         
         NSLayoutConstraint.activate([
-            subLabel.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor, constant: 10),
-            subLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
-            subLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor), // HeaderView의 centerY에 정렬
+            stackView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
+    }
+    
+    func configure(with header: MemberHeader) {
+        //profileImage.image = UIImage(named: header.profileImage)
+        profileImage.image = UIImage(named: "profile")
+        
+        nameLabel.font = UIFont.dmSans(size: 40, weight: .bold)
+        nameLabel.textColor = UIColor.w900
+        nameLabel.text = header.name
+        
+        subLabel.font = UIFont.dmSans(size: 16, weight: .regular)
+        subLabel.textColor = UIColor.w300
+        subLabel.text = header.introduction
     }
 }
