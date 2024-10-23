@@ -23,25 +23,41 @@ class TempViewController: UIViewController {
     
     
     @IBAction func geMember(_ sender: UIButton) {
-
+        let storyboard = UIStoryboard(name: "Member", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     
     @IBAction func goMemDetail(_ sender: UIButton) {
-
+        let storyboard = UIStoryboard(name: "MemberDetail", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MemberDetailViewController") as! MemberDetailViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     
     @IBAction func goIntroduction(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "IntroductionViewController") as! IntroductionViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func goGoal(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Goal", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "GoalViewController") as! GoalViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func goPromise(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Promise", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "PromiseViewController") as! PromiseViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func goMain(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
 
