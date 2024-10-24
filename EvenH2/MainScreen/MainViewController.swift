@@ -96,6 +96,128 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        setupImageView()
+        setupCollectionView()
+        setupPageViewController()
+    }
+    
+    // 이미지뷰 설정
+    func setupImageView() {
+        view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    // CollectionView 설정
+    func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 40)
+        layout.minimumLineSpacing = 10
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        collectionView.backgroundColor = .black
+        
+        view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    // PageViewController 설정
+    func setupPageViewController() {
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        
+        if let firstVC = viewControllerForPage(at: 0) {
+            pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        }
+        
+        addChild(pageViewController)
+        view.addSubview(pageViewController.view)
+        pageViewController.didMove(toParent: self)
+        
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pageViewController.view.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    // CollectionView DataSource (컬렉션 뷰의 셀을 설정)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return pages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
+        cell.labelConfigure(with: indexPath.item)
+        
+        let isSelected: Bool = indexPath.item == currentIndex
+        cell.indicatorConfigure(with: isSelected)
+        cell.labelScaleChange(isSelected)
+        
+        return cell
+    }
+    
+    // CollectionView Delegate (컬렉션 뷰에서 셀을 선택했을 때 페이지 변경)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let direction: UIPageViewController.NavigationDirection = indexPath.item > currentIndex ? .forward : .reverse
+        if indexPath.item != currentIndex {
+            if let vc = viewControllerForPage(at: indexPath.item) {
+                pageViewController.setViewControllers([vc], direction: direction, animated: true, completion: nil)
+                currentIndex = indexPath.item
+            }
+        }
+        collectionView.reloadData()
+    }
+    
+    // PageViewController DataSource (이전/다음 페이지 설정)
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let index = (viewController as! PageContentViewController).pageIndex
+        return viewControllerForPage(at: index - 1)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let index = (viewController as! PageContentViewController).pageIndex
+        return viewControllerForPage(at: index + 1)
+    }
+    
+    // PageViewController Delegate (페이지 전환 완료 시 컬렉션뷰 선택 상태 업데이트)
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed, let currentVC = pageViewController.viewControllers?.first as? PageContentViewController {
+            currentIndex = currentVC.pageIndex
+            collectionView.reloadData()
+            collectionView.selectItem(at: IndexPath(item: currentIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        }
+    }
+    
+    // 페이지에 맞는 ViewController를 반환하는 메서드
+    func viewControllerForPage(at index: Int) -> PageContentViewController? {
+        guard index >= 0 && index < pages.count else { return nil }
+        let vc = PageContentViewController()
+        
+        vc.pageIndex = index
+//        vc.setupCustomView(pages[index])
+        return vc
     }
 }
 
