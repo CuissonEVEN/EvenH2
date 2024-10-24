@@ -16,7 +16,7 @@ class MemberViewController: UIViewController, UICollectionViewDataSource, UIColl
                    blogUrlPath: "https://chhue96.tistory.com/", gitUrlPath: "https://github.com/chaehyunp"),
         
         EvenMember(key: 2, enName: "Si-Yeon Park", krName: "박시연", tmi: "집 앞 떡볶이 JMT 💕", imgAssetName: "img_sy", hash: ["#ISFJ", "#바지런함", "#부드러움", "#명예소방관", "#팀원"],
-                   introduction: "안녕하세요, 2조 박시연입니다. 이번 소개 앱에서는 팀원 디테일 뷰를 맡았습니다. 멘탈케어와 간단한 코드 이슈를 함께 해결했습니다 :) 아침형 인간으로 시간 약속을 잘 지키는 것이 저의 장점입니다. 모르는 기능도 일단 시도해보는 편이며, 다른 사람의 의견이나 코드 스타일을 궁금해하고 적극 수용하는 협업 스타일을 가지고 있습니다.", role: "미니 튜터",
+                   introduction: "안녕하세요, 2조 박시연입니다. 이번 소개 앱에서는 디테일 뷰와 개발 단계에서 작업 흐름을 도와준 템프뷰를 맡았습니다. 멘탈케어와 간단한 코드 이슈를 함께 해결했습니다 :) 아침형 인간으로 시간 약속을 잘 지키는 것이 저의 장점입니다. 모르는 기능도 일단 시도해보는 편이며, 다른 사람의 의견이나 코드 스타일을 궁금해하고 적극 수용하는 협업 스타일을 가지고 있습니다.", role: "미니 튜터",
                    blogUrlPath: "https://velog.io/@sy0201", gitUrlPath: "https://github.com/sy0201"),
         
         EvenMember(key: 3, enName: "Doyle Hwang", krName: "황도일", tmi: "커피보다는 마테차 🍵", imgAssetName: "img_dy", hash: ["#INTP", "#분석적", "#섬세함", "#Git해결사", "#팀원"],
