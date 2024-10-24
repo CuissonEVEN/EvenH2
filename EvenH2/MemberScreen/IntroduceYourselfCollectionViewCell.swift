@@ -25,7 +25,6 @@ class IntroduceYourselfCollectionViewCell: UICollectionViewCell {
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
         contentLabel.numberOfLines = 0
         contentLabel.lineBreakMode = .byTruncatingTail
-        contentLabel.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(contentLabel)
         

@@ -62,7 +62,6 @@ class MemberViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("member \(indexPath.row + 1) is tapped!")
     }
-    
 }
 
 class CustomCell: UICollectionViewCell {

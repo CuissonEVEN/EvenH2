@@ -8,14 +8,14 @@
 import UIKit
 
 final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
-    static let id = "HashTagCollectionViewCell"
+    static let id = "VerticalHashtagCollectionViewCell"
     
     private let hashtagView = UIView()
     private let hashtagLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpViews()
+        setViews()
         setUpConstraints()
     }
     
@@ -23,17 +23,28 @@ final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpViews() {
+    private func setViews() {
         hashtagView.backgroundColor = UIColor(named: "w100")
-        hashtagView.layer.cornerRadius = 20
+        hashtagView.layer.cornerRadius = 16
         hashtagView.layer.borderColor = UIColor(named: "w200")?.cgColor
         hashtagView.layer.borderWidth = 1
         
         hashtagLabel.textColor = UIColor(named: "w600")
         hashtagLabel.font = UIFont.dmSans(size: 16, weight: .regular)
+        hashtagLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal) // 아이템이 너비를 조정할 수 있도록 높은 우선순위 설정
         
         contentView.addSubview(hashtagView)
         hashtagView.addSubview(hashtagLabel)
+    }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        
+        let targetSize = CGSize(width: layoutAttributes.frame.width, height: CGFloat.greatestFiniteMagnitude)
+        let autoSize = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        
+        attributes.frame.size.height = autoSize.height
+        return attributes
     }
     
     private func setUpConstraints() {
@@ -45,15 +56,18 @@ final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
             hashtagView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             hashtagView.topAnchor.constraint(equalTo: contentView.topAnchor),
             hashtagView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            hashtagView.widthAnchor.constraint(equalToConstant: 120),
             
+            // 해시태그 레이블의 제약 조건
             hashtagLabel.centerYAnchor.constraint(equalTo: hashtagView.centerYAnchor),
-            hashtagLabel.centerXAnchor.constraint(equalTo: hashtagView.centerXAnchor)
-
+            hashtagLabel.leadingAnchor.constraint(equalTo: hashtagView.leadingAnchor, constant: 20),
+            hashtagLabel.trailingAnchor.constraint(equalTo: hashtagView.trailingAnchor, constant: -20),
+            hashtagLabel.topAnchor.constraint(equalTo: hashtagView.topAnchor, constant: 5),
+            hashtagLabel.bottomAnchor.constraint(equalTo: hashtagView.bottomAnchor, constant: -5)
         ])
     }
     
     func configure(with hashtagText: String) {
         hashtagLabel.text = hashtagText
+        hashtagLabel.sizeToFit()
     }
 }
