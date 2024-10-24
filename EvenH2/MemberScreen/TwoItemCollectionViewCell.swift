@@ -29,7 +29,6 @@ final class TwoItemCollectionViewCell: UICollectionViewCell {
         addSubview(roundView)
         addSubview(contentLabel)
         
-        //roundView.backgroundColor = UIColor.pointSy
         roundView.layer.borderColor = UIColor.w200.cgColor
         roundView.layer.borderWidth = 1
         roundView.layer.cornerRadius = 5
