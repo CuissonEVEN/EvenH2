@@ -77,7 +77,22 @@ class MyCollectionViewCell: UICollectionViewCell {
 }
 
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    private var collectionView: UICollectionView!
+    private var pageViewController: UIPageViewController!
+    private var currentIndex = 0
+    
+    let pages = [IntroductionViewController(), GoalViewController(), PromiseViewController(), MemberViewController()]
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "hand")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
