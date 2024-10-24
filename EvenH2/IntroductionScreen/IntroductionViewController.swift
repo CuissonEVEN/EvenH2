@@ -28,12 +28,13 @@ class IntroductionViewController: UIViewController {
             height: self.view.bounds.height - padding
         ))
         
-        backgroundImage.image = UIImage(named: "IntroductionBackground002.png")
+        backgroundImage.image = UIImage(named: "BG_introduction.png")
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.clipsToBounds = true // 잘리는 부분 삭제
         
         self.view.insertSubview(backgroundImage, at: 0) // 이미지 뷰를 맨 뒤에 삽입
 
+        
         // 레이블 텍스트 설정
         firstLabel.text = "팀원 모두가 고르게"
         secondLabel.text = "소통하며 함께 완성하는 팀"
