@@ -3,9 +3,8 @@
 //  EvenH2
 //
 //  Created by CHYUN on 10/22/24.
+//  Assigned to DOYLE on 10/22/24.
 //
-
-// DOYLE - PUSH TEST
 
 import UIKit
 
@@ -18,12 +17,22 @@ class IntroductionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 배경 이미지 설정
-        let backgroundImage = UIImageView(frame: self.view.bounds)
+        // 밑에 패딩 추가
+        let padding: CGFloat = 165.0
+
+        // UIImageView 생성 시 패딩을 고려한 프레임 설정
+        let backgroundImage = UIImageView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: self.view.bounds.width,
+            height: self.view.bounds.height - padding
+        ))
+        
         backgroundImage.image = UIImage(named: "IntroductionBackground002.png")
         backgroundImage.contentMode = .scaleAspectFill
-        backgroundImage.clipsToBounds = true
-        self.view.insertSubview(backgroundImage, at: 0)
+        backgroundImage.clipsToBounds = true // 잘리는 부분 삭제
+        
+        self.view.insertSubview(backgroundImage, at: 0) // 이미지 뷰를 맨 뒤에 삽입
 
         // 레이블 텍스트 설정
         firstLabel.text = "팀원 모두가 고르게"
@@ -40,7 +49,5 @@ class IntroductionViewController: UIViewController {
         secondLabel.textAlignment = .left
         thirdLabel.textAlignment = .left
 
-        // 스크롤 뷰 컨텐츠 크기 설정
-        // scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1000) // 원하는 높이 설정
     }
 }
