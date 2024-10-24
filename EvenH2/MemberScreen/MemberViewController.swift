@@ -91,10 +91,12 @@ class MemberViewController: UIViewController, UICollectionViewDataSource, UIColl
         super.viewDidLoad()
 
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16) // 양쪽 패딩 16 포인트
+        layout.sectionInset = UIEdgeInsets(top: 24, left: 16, bottom: 0, right: 16) // 양쪽 패딩 16 포인트
         layout.minimumInteritemSpacing = 8 // 아이템 간의 가로 간격
         layout.minimumLineSpacing = 16 // 아이템 간의 세로 간격
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false // 가로 스크롤 인디케이터 숨기기
+        collectionView.showsVerticalScrollIndicator = false // 세로 스크롤 인디케이터 숨기기
         view.addSubview(collectionView)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false

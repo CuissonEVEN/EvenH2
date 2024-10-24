@@ -26,7 +26,7 @@ class PromiseViewCell: UITableViewCell {
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
         profileImageView.layer.masksToBounds = true
         cellUIView.layer.borderWidth = 1
-        cellUIView.layer.borderColor = UIColor.black.cgColor
+        cellUIView.layer.borderColor = UIColor(named: "w500")?.cgColor
         cellUIView.layer.cornerRadius = 10
         
     }
