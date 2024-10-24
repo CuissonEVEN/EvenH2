@@ -29,7 +29,7 @@ class GoalViewCell: UITableViewCell {
     let GoalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -52,12 +52,17 @@ class GoalViewCell: UITableViewCell {
         GoalNameLabel.translatesAutoresizingMaskIntoConstraints = false
         GoalNameLabel.text = "이름 라벨"
         GoalNameLabel.textAlignment = .left
-        GoalNameLabel.font = UIFont.boldSystemFont(ofSize: 16) // 볼드체 적용
+        GoalNameLabel.font = UIFont.dmSans(size: 16, weight: UIFont.Weight.bold) // 볼드체 적용
         
         GoalLabel.translatesAutoresizingMaskIntoConstraints = false
         GoalLabel.text = "목표 라벨"
         GoalLabel.textAlignment = .left
+        GoalLabel.font = UIFont.dmSans(size: 16, weight: UIFont.Weight.regular) // 일반체 폰트
         
+        // 테두리 추가(임시)
+//        GoalNameLabel.layer.borderWidth = 1
+//        GoalLabel.layer.borderWidth = 1
+
         // 셀에 라벨 추가
         contentView.addSubview(GoalImageView)
         contentView.addSubview(GoalNameLabel)
@@ -68,18 +73,19 @@ class GoalViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             // 이미지 뷰 제약 조건
             GoalImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            GoalImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            GoalImageView.widthAnchor.constraint(equalToConstant: 60),
-            GoalImageView.heightAnchor.constraint(equalToConstant: 60),
+            GoalImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            GoalImageView.widthAnchor.constraint(equalToConstant: 70),
+            GoalImageView.heightAnchor.constraint(equalToConstant: 70),
+            GoalImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
-            // 이름 라벨 제약 조건
-            GoalNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            GoalNameLabel.leadingAnchor.constraint(equalTo: GoalImageView.trailingAnchor, constant: 15),
+            // 이름 라벨 제약 조건 (이미지 뷰의 수직 중심에 맞추기)
+            GoalNameLabel.centerYAnchor.constraint(equalTo: GoalImageView.centerYAnchor, constant: -12), // 중앙에서 약간 위로 배치
+            GoalNameLabel.leadingAnchor.constraint(equalTo: GoalImageView.trailingAnchor, constant: 16),
             GoalNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            
-            // 목표 라벨 제약 조건
-            GoalLabel.topAnchor.constraint(equalTo: GoalNameLabel.bottomAnchor, constant: 12),
-            GoalLabel.leadingAnchor.constraint(equalTo: GoalImageView.trailingAnchor, constant: 15),
+
+            // 목표 라벨 제약 조건 (이름 라벨 아래로 8 포인트 간격으로 배치)
+            GoalLabel.topAnchor.constraint(equalTo: GoalNameLabel.bottomAnchor, constant: 2),
+            GoalLabel.leadingAnchor.constraint(equalTo: GoalImageView.trailingAnchor, constant: 16),
             GoalLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
@@ -93,10 +99,10 @@ class GoalViewCell: UITableViewCell {
         
         // 셀 테두리 설정
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
+        contentView.layer.borderColor = UIColor(named: "w500")?.cgColor
         
         // 여백 설정
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
     }
     
 }
@@ -118,6 +124,13 @@ class GoalViewController: UIViewController, UITableViewDelegate, UITableViewData
         GoalTableView.dataSource = self
         
         GoalTableView.register(GoalViewCell.self, forCellReuseIdentifier: "GoalTableViewCell")
+        
+        GoalTableView.separatorStyle = .none
+        
+        // 인디케이터 숨기기
+        GoalTableView.showsVerticalScrollIndicator = false  // 세로 스크롤 인디케이터 숨김
+        // 테이블 뷰를 뷰에 추가
+        self.view.addSubview(GoalTableView)
     }
     
     //셀 수 설정 (목표랑 이미지 수만큼)
@@ -133,15 +146,20 @@ class GoalViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.GoalImageView.image = UIImage(named: goalImg[indexPath.row]) // 이미지
         cell.GoalNameLabel.text = name[indexPath.row]   // 이름
         cell.GoalLabel.text = goaltext[indexPath.row]   // 목표 내용
-        
+        // 셀 선택효과 삭제
+        cell.selectionStyle = .none
         return cell
     }
     
     //셀 크기 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 130
     }
     
+    // 테이블 뷰 셀과 테이블 뷰 간의 여백 설정
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        GoalTableView.frame = view.bounds.inset(by: UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16)) // 상단, 좌우 여백 설정
+    }
 
-    
 }

@@ -19,7 +19,13 @@ class PromiseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         promiseTableView.dataSource = self
-        promiseTableView.rowHeight = 120
+        promiseTableView.rowHeight = 130
+        
+        // 인디케이터 숨기기
+        promiseTableView.showsVerticalScrollIndicator = false
+        // 세로 스크롤 인디케이터 숨김
+        // 테이블 뷰를 뷰에 추가
+        self.view.addSubview(promiseTableView)
         
         //PromiseDataManager에 데이터 요청 get~
         promiseViewDataManager.makePromiseData()
@@ -59,6 +65,7 @@ extension PromiseViewController: UITableViewDataSource {
             cell.descriptionLabel.attributedText = attributedString
 //          색상변경 코드가 들어가면서 위 코드로 변경됨
 //          cell.descriptionLabel.text = promise.promiseDescription
+           // 셀 선택효과 삭제
             cell.selectionStyle = .none
         
             return cell
