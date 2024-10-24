@@ -43,7 +43,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="firstLabel" destination="gKL-ng-CJI" id="0Lr-UX-yau"/>
+                        <outlet property="firstLabel" destination="gKL-ng-CJI" id="9vi-md-kNO"/>
                         <outlet property="secondLabel" destination="R78-jV-B2g" id="Fg0-Nq-S02"/>
                         <outlet property="thirdLabel" destination="xyw-qE-bd0" id="tRe-9o-dWr"/>
                     </connections>
