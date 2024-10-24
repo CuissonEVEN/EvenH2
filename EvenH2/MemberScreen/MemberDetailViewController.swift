@@ -50,17 +50,22 @@ struct IntroduceYourself: Hashable {
 }
 
 final class MemberDetailViewController: UIViewController {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
+    let imageView = UIImageView()
     var selectedMember: Member?
+    lazy var collectionView: UICollectionView = {
+        let layout = createCompositionalLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     var members: [Member] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCollectinoView()
+        setImageView()
+        setCollectionView()
         configureDataSource()
         fetchData()
         applySnapshot()
@@ -77,15 +82,39 @@ final class MemberDetailViewController: UIViewController {
         ]
     }
     
-    func setCollectinoView() {
-        collectionView.collectionViewLayout = createCompositionalLayout()
-                
-        collectionView.register(VerticalHashtagCollectionViewCell.self, forCellWithReuseIdentifier: VerticalHashtagCollectionViewCell.id)
+    func setImageView() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "bottomArrow")
+        imageView.contentMode = .scaleAspectFit
+        
+        view.addSubview(imageView)
 
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 12),
+            imageView.heightAnchor.constraint(equalToConstant: 12),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40)
+        ])
+    }
+    
+    func setCollectionView() {
+        collectionView.collectionViewLayout = createCompositionalLayout()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
+
+        view.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        collectionView.register(VerticalHashtagCollectionViewCell.self, forCellWithReuseIdentifier: VerticalHashtagCollectionViewCell.id)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
         collectionView.register(IntroduceYourselfCollectionViewCell.self, forCellWithReuseIdentifier: IntroduceYourselfCollectionViewCell.id)
-        
-        collectionView.register(TwoItemCollectionViewCell.self, forCellWithReuseIdentifier: TwoItemCollectionViewCell.id)
+        collectionView.register(LinkCollectionViewCell.self, forCellWithReuseIdentifier: LinkCollectionViewCell.id)
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -141,11 +170,11 @@ final class MemberDetailViewController: UIViewController {
     }
     
     func createTwoRowTwoItemLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(80))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(80))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(160))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(80))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(10)
 
         let section = NSCollectionLayoutSection(group: group)
@@ -176,10 +205,10 @@ final class MemberDetailViewController: UIViewController {
                 return cell
                 
             case .detail(let title):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwoItemCollectionViewCell.id, for: indexPath) as? TwoItemCollectionViewCell else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCollectionViewCell.id, for: indexPath) as? LinkCollectionViewCell else {
                     fatalError("Unable to dequeue TwoItemCollectionViewCell")
                 }
-                cell.configure(content: title)
+
                 return cell
             }
         }
@@ -214,9 +243,7 @@ final class MemberDetailViewController: UIViewController {
         
         let introduceYourself = IntroduceYourself(id: "\(member.id)", mbti: member.mbti, strength: member.strength, teamRole: member.teamRole, personalGoal: member.personalGoal)
         
-        for detail in introduceYourself.details {
-            snapshot.appendItems([.detail(detail)], toSection: .details)
-        }
+        snapshot.appendItems([.detail("Link")], toSection: .details)
         
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
