@@ -8,16 +8,16 @@
 import Foundation
 
 struct EvenMember {
-    private var key: Int
-    private var enName: String
-    private var krName: String
-    private var tmi: String
-    private var imgAssetName: String
-    private var hash: [String]
-    private var introduction: String
-    private var role: String
-    private var blogUrlPath: String
-    private var gitUrlPath: String
+    private let key: Int
+    private let enName: String
+    private let krName: String
+    private let tmi: String
+    private let imgAssetName: String
+    private let hash: [String]
+    private let introduction: String
+    private let role: String
+    private let blogUrlPath: String
+    private let gitUrlPath: String
     
     init(key: Int, enName: String, krName: String, tmi: String, imgAssetName: String, hash: [String], introduction: String, role: String, blogUrlPath: String, gitUrlPath: String) {
         self.key = key
