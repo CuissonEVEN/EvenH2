@@ -12,7 +12,7 @@ final class HeaderView: UICollectionReusableView {
     
     let profileImage = UIImageView()
     let nameLabel = UILabel()
-    let subLabel = UILabel()
+    let roleLabel = UILabel()
     let stackView = UIStackView()
 
     override init(frame: CGRect) {
@@ -27,13 +27,13 @@ final class HeaderView: UICollectionReusableView {
     private func setUI() {
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        subLabel.translatesAutoresizingMaskIntoConstraints = false
+        roleLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         stackView.axis = .vertical
         stackView.spacing = 5
         stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(subLabel)
+        stackView.addArrangedSubview(roleLabel)
         
         addSubview(profileImage)
         addSubview(stackView)
@@ -53,15 +53,15 @@ final class HeaderView: UICollectionReusableView {
     }
     
     func configure(with header: MemberHeader) {
-        //profileImage.image = UIImage(named: header.profileImage)
-        profileImage.image = UIImage(named: "profile")
-        
+        profileImage.image = UIImage(named: header.profileImage)
+        profileImage.contentMode = .scaleAspectFit
+
         nameLabel.font = UIFont.dmSans(size: 40, weight: .bold)
         nameLabel.textColor = UIColor.w900
         nameLabel.text = header.name
         
-        subLabel.font = UIFont.dmSans(size: 16, weight: .regular)
-        subLabel.textColor = UIColor.w300
-        subLabel.text = header.personalGoal
+        roleLabel.font = UIFont.dmSans(size: 16, weight: .regular)
+        roleLabel.textColor = UIColor.w300
+        roleLabel.text = header.role
     }
 }

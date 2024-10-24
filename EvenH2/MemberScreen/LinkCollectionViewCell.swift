@@ -9,10 +9,12 @@ import UIKit
 
 final class LinkCollectionViewCell: UICollectionViewCell {
     static let id = "LinkCollectionViewCell"
-
+    var blogLink: String?
+    var githubLink: String?
+    
     let blogImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "blogicon") // 네이버 로고 이미지
+        imageView.image = UIImage(named: "blogicon")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -20,7 +22,7 @@ final class LinkCollectionViewCell: UICollectionViewCell {
     
     let githubImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "githubicon") // 다음 로고 이미지
+        imageView.image = UIImage(named: "githubicon")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -89,13 +91,13 @@ final class LinkCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func blogButtonTapped() {
-        if let url = URL(string: "https://velog.io/@sy0201") {
+        if let urlString = blogLink, let url = URL(string: urlString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @objc func githubButtonTapped() {
-        if let url = URL(string: "https://github.com/sy0201") {
+        if let urlString = githubLink, let url = URL(string: urlString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
