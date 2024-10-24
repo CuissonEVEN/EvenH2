@@ -83,3 +83,38 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
+// 페이지마다 보여질 ViewController 정의
+class PageContentViewController: UIViewController {
+    var pageIndex: Int = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemGray5
+        
+        if pageIndex == 0 {
+            setupCustomView(IntroductionViewController())
+        } else if pageIndex == 1 {
+            setupCustomView(GoalViewController())
+        } else if pageIndex == 2 {
+            setupCustomView(PromiseViewController())
+        } else if pageIndex == 3 {
+            setupCustomView(MemberViewController())
+        }
+    }
+        
+    // 커스텀 뷰 컨트롤러 추가
+    func setupCustomView(_ vc: UIViewController) {
+        let customVC = vc
+        addChild(customVC)
+        view.addSubview(customVC.view)
+        customVC.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            customVC.view.topAnchor.constraint(equalTo: view.topAnchor),
+            customVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            customVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+}
