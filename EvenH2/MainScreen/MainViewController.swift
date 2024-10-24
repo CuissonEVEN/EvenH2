@@ -229,10 +229,13 @@ class PageContentViewController: UIViewController {
         view.backgroundColor = .systemGray5
         
         if pageIndex == 0 {
-            setupCustomView(IntroductionViewController())
+            let vc = UIStoryboard(name: "Introduction", bundle: nil).instantiateViewController(identifier: "IntroductionViewController") as! IntroductionViewController
+            setupCustomView(vc)
         } else if pageIndex == 1 {
-            setupCustomView(GoalViewController())
+            let vc = UIStoryboard(name: "Goal", bundle: nil).instantiateViewController(identifier: "GoalViewController") as! GoalViewController
+            setupCustomView(vc)
         } else if pageIndex == 2 {
+//            let vc = UIStoryboard(name: "Promis", bundle: nil).instantiateViewController(identifier: "PromiseViewController") as! PromiseViewController
             setupCustomView(PromiseViewController())
         } else if pageIndex == 3 {
             setupCustomView(MemberViewController())
