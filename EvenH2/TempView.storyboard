@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Temp View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="TempViewController" id="Y6W-OH-hqX" customClass="TempViewController" customModule="EvenH2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlW-aN-mfS">
+                                <rect key="frame" x="134" y="193" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="박채현(멤버뷰)"/>
+                                <connections>
+                                    <action selector="geMember:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="77x-Ih-ZNc"/>
+                                    <segue destination="Rsl-eb-1fU" kind="show" id="uCd-EN-tZl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RH-5t-zul">
+                                <rect key="frame" x="134" y="273" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="박시연(멤디뷰)"/>
+                                <connections>
+                                    <action selector="goMemDetail:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="q22-DU-zEr"/>
+                                    <segue destination="9ye-dx-UZp" kind="show" id="jSG-Xg-ii0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbl-ni-XWd">
+                                <rect key="frame" x="134" y="351" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="황도일(소개뷰)"/>
+                                <connections>
+                                    <action selector="goIntroduction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="teJ-hH-e8d"/>
+                                    <segue destination="Bvs-a1-DVP" kind="show" id="Jd5-Ev-91I"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9r-gw-I7y">
+                                <rect key="frame" x="134" y="505" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="나영진(약속뷰)"/>
+                                <connections>
+                                    <action selector="goPromise:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FiV-vg-IWc"/>
+                                    <segue destination="BMV-Ry-Tog" kind="show" id="siP-3i-sHH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gs-dK-KGp">
+                                <rect key="frame" x="134" y="581" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="장상경(메인뷰)"/>
+                                <connections>
+                                    <action selector="goMain:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="G23-UF-TVJ"/>
+                                    <segue destination="rza-ck-IhZ" kind="show" id="lt4-4C-ULA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUq-vA-rWB">
+                                <rect key="frame" x="134" y="431" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="박민석(목표뷰)"/>
+                                <connections>
+                                    <action selector="goGoal:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5Kr-BM-OLE"/>
+                                    <segue destination="aXr-JJ-GeJ" kind="show" id="ccT-Lm-hEs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="goalButton" destination="nUq-vA-rWB" id="XxL-7P-Cu7"/>
+                        <outlet property="introductionButton" destination="Gbl-ni-XWd" id="egQ-7Z-xd7"/>
+                        <outlet property="mainButton" destination="3Gs-dK-KGp" id="2Rh-q5-DOP"/>
+                        <outlet property="memDetailButton" destination="1RH-5t-zul" id="mjU-WH-NSK"/>
+                        <outlet property="memberButton" destination="jlW-aN-mfS" id="HjR-xu-rzC"/>
+                        <outlet property="promiseButton" destination="O9r-gw-I7y" id="fgq-ET-lwH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="97" y="-34"/>
+        </scene>
+        <!--MemberDetailViewController-->
+        <scene sceneID="qTC-e0-fdD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MemberDetailViewController" storyboardName="MemberDetail" referencedIdentifier="MemberDetailViewController" id="9ye-dx-UZp" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6Lc-g3-N2V"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Du-ig-ooA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="851" y="-139"/>
+        </scene>
+        <!--MemberViewController-->
+        <scene sceneID="PIx-NZ-gur">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Member" referencedIdentifier="MemberViewController" id="Rsl-eb-1fU" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="S6I-SQ-QwP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="paA-Go-u2x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817" y="-188"/>
+        </scene>
+        <!--IntroductionViewController-->
+        <scene sceneID="OvV-lo-sMx">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="IntroductionViewController" storyboardName="Introduction" referencedIdentifier="IntroductionViewController" id="Bvs-a1-DVP" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="G7l-G7-JeR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AuU-QS-f3R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="833" y="-84"/>
+        </scene>
+        <!--GoalViewController-->
+        <scene sceneID="75n-Cq-K35">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="GoalViewController" storyboardName="Goal" referencedIdentifier="GoalViewController" id="aXr-JJ-GeJ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lI5-2G-wuV"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aRg-VC-DgO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="818" y="-35"/>
+        </scene>
+        <!--PromiseViewController-->
+        <scene sceneID="ITe-SD-qf6">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PromiseViewController" storyboardName="Promise" referencedIdentifier="PromiseViewController" id="BMV-Ry-Tog" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="acZ-VB-su0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AJc-df-0LW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="833" y="11"/>
+        </scene>
+        <!--MainViewController-->
+        <scene sceneID="97w-WE-xte">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MainViewController" storyboardName="Main" referencedIdentifier="MainViewController" id="rza-ck-IhZ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yae-ic-Hem"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eVY-MG-HHJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="57"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
