@@ -235,8 +235,8 @@ class PageContentViewController: UIViewController {
             let vc = UIStoryboard(name: "Goal", bundle: nil).instantiateViewController(identifier: "GoalViewController") as! GoalViewController
             setupCustomView(vc)
         } else if pageIndex == 2 {
-//            let vc = UIStoryboard(name: "Promis", bundle: nil).instantiateViewController(identifier: "PromiseViewController") as! PromiseViewController
-            setupCustomView(PromiseViewController())
+            let vc = UIStoryboard(name: "Promise", bundle: nil).instantiateViewController(identifier: "PromiseViewController") as! PromiseViewController
+            setupCustomView(vc)
         } else if pageIndex == 3 {
             setupCustomView(MemberViewController())
         }
