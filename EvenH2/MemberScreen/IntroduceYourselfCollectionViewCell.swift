@@ -38,7 +38,7 @@ class IntroduceYourselfCollectionViewCell: UICollectionViewCell {
     
     func configure(content: String) {
         contentLabel.font = UIFont.dmSans(size: 14, weight: .regular)
-        contentLabel.textColor = UIColor.w300
+        contentLabel.textColor = UIColor.w600
         contentLabel.text = content
     }
 }
