@@ -52,12 +52,12 @@ class GoalViewCell: UITableViewCell {
         GoalNameLabel.translatesAutoresizingMaskIntoConstraints = false
         GoalNameLabel.text = "이름 라벨"
         GoalNameLabel.textAlignment = .left
-        GoalNameLabel.font = UIFont.boldSystemFont(ofSize: 14) // 볼드체 적용
+        GoalNameLabel.font = UIFont.dmSans(size: 16, weight: UIFont.Weight.bold) // 볼드체 적용
         
         GoalLabel.translatesAutoresizingMaskIntoConstraints = false
         GoalLabel.text = "목표 라벨"
         GoalLabel.textAlignment = .left
-        GoalLabel.font = UIFont.systemFont(ofSize: 12) // 일반체 폰트 (크기 12)
+        GoalLabel.font = UIFont.dmSans(size: 16, weight: UIFont.Weight.regular) // 일반체 폰트
         
         // 테두리 추가(임시)
 //        GoalNameLabel.layer.borderWidth = 1
@@ -78,16 +78,15 @@ class GoalViewCell: UITableViewCell {
             GoalImageView.heightAnchor.constraint(equalToConstant: 70),
             GoalImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
-            // 이름 라벨 제약 조건
-            GoalNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            // 이름 라벨 제약 조건 (이미지 뷰의 수직 중심에 맞추기)
+            GoalNameLabel.centerYAnchor.constraint(equalTo: GoalImageView.centerYAnchor, constant: -12), // 중앙에서 약간 위로 배치
             GoalNameLabel.leadingAnchor.constraint(equalTo: GoalImageView.trailingAnchor, constant: 16),
             GoalNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            
-            // 목표 라벨 제약 조건
-            GoalLabel.topAnchor.constraint(equalTo: GoalNameLabel.bottomAnchor, constant: 8),
+
+            // 목표 라벨 제약 조건 (이름 라벨 아래로 8 포인트 간격으로 배치)
+            GoalLabel.topAnchor.constraint(equalTo: GoalNameLabel.bottomAnchor, constant: 2),
             GoalLabel.leadingAnchor.constraint(equalTo: GoalImageView.trailingAnchor, constant: 16),
-            GoalLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            GoalLabel.heightAnchor.constraint(equalToConstant: 42) // 목표 라벨 높이 설정
+            GoalLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
     
@@ -100,7 +99,7 @@ class GoalViewCell: UITableViewCell {
         
         // 셀 테두리 설정
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = UIColor(named: "w500")?.cgColor
         
         // 여백 설정
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))

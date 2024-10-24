@@ -8,6 +8,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DMSans-Bold.ttf">
+            <string>DMSans-Bold</string>
+        </array>
+        <array key="DMSans-Regular.ttf">
+            <string>DMSans-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Promise View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -30,9 +38,25 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-WS-9Jg">
                                                     <rect key="frame" x="5" y="10" width="351" height="110"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szx-yA-o8u">
+                                                            <rect key="frame" x="95" y="20" width="221" height="27"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="DMSans-Bold" family="DM Sans" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd2-yh-HrB">
+                                                            <rect key="frame" x="95" y="42" width="248" height="55"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="DMSans-Regular" family="DM Sans" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RDZ-D3-qmq">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RDZ-D3-qmq">
                                                     <rect key="frame" x="20" y="30" width="70" height="70"/>
                                                     <color key="backgroundColor" red="0.81078347969999998" green="0.62204518949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -40,35 +64,11 @@
                                                         <constraint firstAttribute="height" constant="70" id="s6i-zE-3g8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-BQ-fd2">
-                                                    <rect key="frame" x="110" y="33" width="221" height="67"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szx-yA-o8u">
-                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="Q5N-7W-u6T"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd2-yh-HrB">
-                                                            <rect key="frame" x="0.0" y="28" width="221" height="39"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="RDZ-D3-qmq" firstAttribute="bottom" secondItem="DYN-BQ-fd2" secondAttribute="bottomMargin" id="7S2-3z-PuA"/>
-                                                <constraint firstItem="DYN-BQ-fd2" firstAttribute="leading" secondItem="RDZ-D3-qmq" secondAttribute="trailing" constant="20" id="HFD-80-2G3"/>
                                                 <constraint firstItem="iJT-WS-9Jg" firstAttribute="leading" secondItem="Sjw-tq-8OP" secondAttribute="leading" constant="5" id="J3J-3l-BfT"/>
-                                                <constraint firstItem="DYN-BQ-fd2" firstAttribute="top" secondItem="iJT-WS-9Jg" secondAttribute="topMargin" constant="15" id="KBs-9e-ab0"/>
                                                 <constraint firstItem="iJT-WS-9Jg" firstAttribute="top" secondItem="Sjw-tq-8OP" secondAttribute="top" constant="10" id="XGm-JX-nfD"/>
                                                 <constraint firstItem="RDZ-D3-qmq" firstAttribute="centerY" secondItem="Sjw-tq-8OP" secondAttribute="centerY" id="XGx-3s-pCZ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DYN-BQ-fd2" secondAttribute="trailing" constant="10" id="YZ5-9A-4gd"/>
                                                 <constraint firstItem="iJT-WS-9Jg" firstAttribute="centerY" secondItem="Sjw-tq-8OP" secondAttribute="centerY" id="d8S-1U-tbc"/>
                                                 <constraint firstItem="RDZ-D3-qmq" firstAttribute="leading" secondItem="Sjw-tq-8OP" secondAttribute="leading" constant="20" id="dBj-fm-2cs"/>
                                                 <constraint firstAttribute="bottom" secondItem="iJT-WS-9Jg" secondAttribute="bottom" constant="10" id="rx7-rm-htb"/>
