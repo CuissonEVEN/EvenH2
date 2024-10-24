@@ -12,7 +12,7 @@ class MemberViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     let members: [EvenMember] = [
         EvenMember(key: 1, enName: "Chae-Hyun Park", krName: "박채현", tmi: "동생이 지난 달에 전역함 👽", imgAssetName: "img_ch", hash: ["#ESTJ", "#적극적", "#리더십", "#KIA팬", "#팀장"],
-                   introduction: "안녕하세요, 저는 2조의 팀장을 맡고 있는 박채현입니다. 본 소개 앱의 멤버 뷰를 맡았습니다. 팀원분들의 의견을 적극 수용하려 노력하며 작업을 진행하였습니다. 낯가림이 없어 빠르게 적응하고, 정리를 잘하는 것이 제 강점입니다. 협업할 때는 규칙을 지키는 것을 중요하게 생각하며, 의견을 적극적으로 제시하는 편입니다. 프로젝트가 원활히 진행될 수 있도록 팀을 이끄는 데 힘썼습니다. 2븐조 팀원이 제일 최고야!", role: "헤드 프레젠터",
+                   introduction: "안녕하세요, 저는 2조의 팀장을 맡고 있는 박채현입니다. 본 소개 앱의 멤버 목록 뷰를 맡았습니다. 팀원분들의 의견을 적극 수용하려 노력하며 작업을 진행하였습니다. 낯가림이 없어 빠르게 적응하고, 정리를 잘하는 것이 제 강점입니다. 협업할 때는 규칙을 지키는 것을 중요하게 생각하며, 의견을 적극적으로 제시하는 편입니다. 프로젝트가 원활히 진행될 수 있도록 팀을 이끄는 데 힘썼습니다. 2븐조 팀원이 제일 최고야!", role: "헤드 프레젠터",
                    blogUrlPath: "https://chhue96.tistory.com/", gitUrlPath: "https://github.com/chaehyunp"),
         
         EvenMember(key: 2, enName: "Si-Yeon Park", krName: "박시연", tmi: "집 앞 떡볶이 JMT 💕", imgAssetName: "img_sy", hash: ["#ISFJ", "#바지런함", "#부드러움", "#명예소방관", "#팀원"],
