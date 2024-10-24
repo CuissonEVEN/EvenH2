@@ -216,7 +216,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let vc = PageContentViewController()
         
         vc.pageIndex = index
-//        vc.setupCustomView(pages[index])
         return vc
     }
 }
