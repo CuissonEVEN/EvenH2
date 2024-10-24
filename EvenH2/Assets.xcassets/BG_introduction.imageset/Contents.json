@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "IntroductionBackground.png",
+      "filename" : "BG_introduction.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "IntroductionBackground@2x.png",
+      "filename" : "BG_introduction@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "IntroductionBackground@3x.png",
+      "filename" : "BG_introduction@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
