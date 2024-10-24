@@ -87,7 +87,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "hand")
+        imageView.image = UIImage(named: "AppLogo")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
