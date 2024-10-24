@@ -119,8 +119,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 40)
-        layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(width: 100, height: 50)
+        layout.minimumLineSpacing = 0
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
@@ -135,7 +135,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             collectionView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 40)
+            collectionView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -226,7 +226,7 @@ class PageContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = UIColor.white
         
         if pageIndex == 0 {
             let vc = UIStoryboard(name: "Introduction", bundle: nil).instantiateViewController(identifier: "IntroductionViewController") as! IntroductionViewController
