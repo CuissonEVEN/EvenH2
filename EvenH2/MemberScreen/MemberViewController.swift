@@ -20,11 +20,11 @@ class MemberViewController: UIViewController, UICollectionViewDataSource, UIColl
                    blogUrlPath: "https://velog.io/@sy0201", gitUrlPath: "https://github.com/sy0201"),
         
         EvenMember(key: 3, enName: "Doyle Hwang", krName: "황도일", tmi: "커피보다는 마테차 🍵", imgAssetName: "img_dy", hash: ["#INFP", "#침착함", "#끈기", "#포토그래퍼"],
-                   introduction: "안녕하세요! 2조의 깐죽 담당 황도일입니다. 놓치기 쉬운 디테일을 보고 완성도를 높이기 위해 팀원을 귀찮게 하는 걸 좋아합니다 >:D", role: "세션 리마인더",
+                   introduction: "안녕하세요! 2조의 깐죽 담당 황도일입니다. 놓치기 쉬운 디테일을 보고 완성도를 높이기 위해 팀원을 귀찮게 하는 걸 좋아합니다 >:D", role: "바이브 매니저",
                    blogUrlPath: "https://velog.io/@doylehworks", gitUrlPath: "https://github.com/DoyleHWorks"),
         
         EvenMember(key: 4, enName: "Min-Seok Park", krName: "박민석", tmi: "아직 여름이불 덮는 중~ 💦", imgAssetName: "img_ms", hash: ["#INTP", "#분석적", "#섬세함", "#Git해결사"],
-                   introduction: "안녕하세요, 저는 2조의 팀장을 맡고 있는 박채현입니다.  팀원분들의 의견을 적극 수용하려 노력하며 작업을 진행하였습니다. 2븐조 팀원이 제일 최고야!", role: "바이브 매니저",
+                   introduction: "안녕하세요~ 2조 박민석입니다. 이번 프로젝트에서 목표 뷰를 맡았습니다! 팀원분들의 도움을 많~이 받으며 애써보았읍니다ㅎㅎ", role: "세션 리마인더",
                    blogUrlPath: "https://iosstudyletsgo.tistory.com/", gitUrlPath: "https://github.com/maxminseok"),
         
         EvenMember(key: 5, enName: "Young-Jin Na", krName: "나영진", tmi: "창문이 너무 커서 뜨거움 🌈", imgAssetName: "img_yj", hash: ["#INFJ", "#차분함", "#말 잘들음", "#산들바람"],
