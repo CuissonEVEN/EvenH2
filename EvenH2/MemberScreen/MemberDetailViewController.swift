@@ -10,25 +10,26 @@ import UIKit
 fileprivate enum Section {
     case hashTag
     case introduction
-    case details
+    case contact
 }
 
 fileprivate enum Item: Hashable {
     case hashTag(String)
     case introduction(String)
-    case detail(String, String?, String?)
+    case contact(String, String?, String?)
 }
 
 final class MemberDetailViewController: UIViewController {
     let imageView = UIImageView()
-    var selectedMember: EvenMember?
     lazy var collectionView: UICollectionView = {
         let layout = createCompositionalLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    var selectedMember: EvenMember?
     var members: [EvenMember] = []
     
     
@@ -46,7 +47,7 @@ final class MemberDetailViewController: UIViewController {
         }
     }
     
-    func fetchData() {
+    private func fetchData() {
         members = [
             EvenMember(key: 0, enName: "Chae-Hyun Park", krName: "박채현", tmi: "동생이 지난 달에 전역함 👽", imgAssetName: "img_ch", hash: ["ESTJ", "적극적", "리더십", "KIA팬"],
                        introduction: "안녕하세요, 저는 2조의 팀장을 맡고 있는 박채현입니다.  팀원분들의 의견을 적극 수용하려 노력하며 작업을 진행하였습니다. 2븐조 팀원이 제일 최고야!", role: "헤드 프레젠터",
@@ -74,57 +75,14 @@ final class MemberDetailViewController: UIViewController {
         ]
     }
     
-    func setImageView() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "bottomArrow")
-        imageView.contentMode = .scaleAspectFit
-        
-        view.addSubview(imageView)
-
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 12),
-            imageView.heightAnchor.constraint(equalToConstant: 12),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40)
-        ])
-    }
-    
-    func setCollectionView() {
-        collectionView.collectionViewLayout = createCompositionalLayout()
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.isScrollEnabled = false
-
-        view.addSubview(collectionView)
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        collectionView.register(VerticalHashtagCollectionViewCell.self, forCellWithReuseIdentifier: VerticalHashtagCollectionViewCell.id)
-        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
-        collectionView.register(IntroduceYourselfCollectionViewCell.self, forCellWithReuseIdentifier: IntroduceYourselfCollectionViewCell.id)
-        collectionView.register(LinkCollectionViewCell.self, forCellWithReuseIdentifier: LinkCollectionViewCell.id)
-    }
-    
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
             switch sectionIndex {
-            case 0:
-                return self.createHashTagSection()
-                
-            case 1:
-                return self.createIntroductionSection()
-                
-            case 2:
-                return self.createContactLinkLayout()
-                
-            default:
-                return self.createHashTagSection()
+            case 0: return self.createHashTagSection()
+            case 1: return self.createIntroductionSection()
+            case 2: return self.createContactLinkLayout()
+            default: return nil
             }
         }
     }
@@ -197,7 +155,7 @@ final class MemberDetailViewController: UIViewController {
                 cell.configure(content: introduction)
                 return cell
                 
-            case .detail(_, let blogLink, let githubLink):
+            case .contact(_, let blogLink, let githubLink):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCollectionViewCell.id, for: indexPath) as? LinkCollectionViewCell else {
                     fatalError("Unable to dequeue TwoItemCollectionViewCell")
                 }
@@ -230,8 +188,7 @@ final class MemberDetailViewController: UIViewController {
     
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        
-        snapshot.appendSections([.hashTag, .introduction, .details])
+        snapshot.appendSections([.hashTag, .introduction, .contact])
         
         guard let member = selectedMember else {
             print("No member selected")
@@ -243,8 +200,47 @@ final class MemberDetailViewController: UIViewController {
         
         let blogLink = member.getBlogUrlPath()
         let githubLink = member.getGitUrlPath()
-        snapshot.appendItems([.detail("Link", blogLink, githubLink)], toSection: .details)
+        snapshot.appendItems([.contact("Link", blogLink, githubLink)], toSection: .contact)
         
         dataSource?.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+// UI Set 구현
+private extension MemberDetailViewController {
+    func setImageView() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "bottomArrow")
+        imageView.contentMode = .scaleAspectFit
+        
+        view.addSubview(imageView)
+
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 12),
+            imageView.heightAnchor.constraint(equalToConstant: 12),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40)
+        ])
+    }
+    
+    func setCollectionView() {
+        collectionView.collectionViewLayout = createCompositionalLayout()
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
+
+        view.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        collectionView.register(VerticalHashtagCollectionViewCell.self, forCellWithReuseIdentifier: VerticalHashtagCollectionViewCell.id)
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
+        collectionView.register(IntroduceYourselfCollectionViewCell.self, forCellWithReuseIdentifier: IntroduceYourselfCollectionViewCell.id)
+        collectionView.register(LinkCollectionViewCell.self, forCellWithReuseIdentifier: LinkCollectionViewCell.id)
     }
 }

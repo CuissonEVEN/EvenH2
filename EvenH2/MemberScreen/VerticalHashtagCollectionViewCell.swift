@@ -24,14 +24,14 @@ final class VerticalHashtagCollectionViewCell: UICollectionViewCell {
     }
     
     private func setViews() {
-        hashtagView.backgroundColor = UIColor(named: "w100")
+        hashtagView.backgroundColor = UIColor.w100
         hashtagView.layer.cornerRadius = 16
-        hashtagView.layer.borderColor = UIColor(named: "w200")?.cgColor
+        hashtagView.layer.borderColor = UIColor.w200.cgColor
         hashtagView.layer.borderWidth = 1
         
-        hashtagLabel.textColor = UIColor(named: "w600")
+        hashtagLabel.textColor = UIColor.w600
         hashtagLabel.font = UIFont.dmSans(size: 16, weight: .regular)
-        hashtagLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal) // 아이템이 너비를 조정할 수 있도록 높은 우선순위 설정
+        hashtagLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
         contentView.addSubview(hashtagView)
         hashtagView.addSubview(hashtagLabel)
